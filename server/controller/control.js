@@ -35,15 +35,28 @@ exports.createTeacher = (req,res)=>{
 
 // TO Find Teacher
 exports.findTeacher = (req,res)=>{
-    TeacherDB.findOne({walletAddress : req.body.wAddress}).then(data=>{
-        if(!data){
-            res.status(404).send("None")
-        }else{
-            res.send(data);
-        }
-    }).catch(err=>{
-        res.status(500).send({message:err.message || "some error occurred "})
-    })
+    if(req.query.wAddress){
+        TeacherDB.findOne({walletAddress : req.query.wAddress}).then(data=>{
+            if(!data){
+                res.status(404).send("None")
+            }else{
+                res.send(data);
+            }
+        }).catch(err=>{
+            res.status(500).send({message:err.message || "some error occurred "})
+        })
+    }
+    else{
+        TeacherDB.find().then(data=>{
+            if(!data){
+                res.status(404).send("None")
+            }else{
+                res.send(data);
+            }
+        }).catch(err=>{
+            res.status(500).send({message:err.message || "some error occurred "})
+        })
+    }
 }
 
 /*
@@ -77,15 +90,28 @@ exports.createStudent = (req,res)=>{
 
 // TO Find Student
 exports.findStudent = (req,res)=>{
-    StudentDB.findOne({walletAddress : req.body.wAddress}).then(data=>{
-        if(!data){
-            res.status(404).send("None")
-        }else{
-            res.send(data);
-        }
-    }).catch(err=>{
-        res.status(500).send({message:err.message || "some error occurred "})
-    })
+    if(req.query.wAddress){
+        StudentDB.findOne({walletAddress : req.query.wAddress}).then(data=>{
+            if(!data){
+                res.status(404).send("None")
+            }else{
+                res.send(data);
+            }
+        }).catch(err=>{
+            res.status(500).send({message:err.message || "some error occurred "})
+        })
+    }
+    else{
+        StudentDB.find().then(data=>{
+            if(!data){
+                res.status(404).send("None")
+            }else{
+                res.send(data);
+            }
+        }).catch(err=>{
+            res.status(500).send({message:err.message || "some error occurred "})
+        })
+    }
 }
 
 //To create a course 

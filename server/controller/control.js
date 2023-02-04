@@ -176,7 +176,7 @@ exports.getCount = (req,res)=>{
         if(!data){
             res.status(404).send('None')
         }else{
-            res.send(data.data);
+            res.send(data);
         }
     }).catch(err=>{
         res.status(500).send({message:err.message || "some error occurred in fetchin."})

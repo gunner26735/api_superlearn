@@ -2,6 +2,7 @@ const TeacherDB = require('../model/model_teacher')
 const StudentDB = require('../model/model_student')
 const CourseDB = require('../model/model_course');
 const courseDB = require('../model/model_course');
+const countDB = require('../model/model_seq')
 
 /*
 TO create new Teacher
@@ -166,4 +167,19 @@ exports.getCourses = (req,res)=>{
             res.status(500).send({message:err.message || "some error occurred "})
         })
     }
+}
+
+//TO fetch current count
+//Fetch all Courses
+exports.getCount = (req,res)=>{
+    
+    countDB.find().then(data=>{
+        if(!data){
+            res.status(404).send('None')
+        }else{
+            res.send(data.seq);
+        }
+    }).catch(err=>{
+        res.status(500).send({message:err.message || "some error occurred in finding User."})
+    })
 }

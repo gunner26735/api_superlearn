@@ -20,5 +20,7 @@ route.get("/api/get_student",controller.findStudent);
 route.post("/api/create_course",controller.createCourse);
 //fetch all courses 
 route.get("/api/course",controller.getCourses)
+//to get courseId count
+route.get("/api/count",controller.getCount)
 
 module.exports = route

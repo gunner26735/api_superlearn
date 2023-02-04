@@ -2,7 +2,7 @@ const TeacherDB = require('../model/model_teacher')
 const StudentDB = require('../model/model_student')
 const CourseDB = require('../model/model_course');
 const courseDB = require('../model/model_course');
-const counterDB = require('../model/model_seq')
+const {Counter} = require('../model/model_seq')
 
 /*
 TO create new Teacher
@@ -172,7 +172,7 @@ exports.getCourses = (req,res)=>{
 //TO fetch current count
 //Fetch all Courses
 exports.getCount = (req,res)=>{
-    counterDB.find().then(data=>{
+    Counter.find().then(data=>{
         if(!data){
             res.status(404).send('None')
         }else{

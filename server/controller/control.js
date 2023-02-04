@@ -125,6 +125,7 @@ exports.createCourse = (req,res)=>{
     walletAddress: req.body.walletAddress,
     cName: req.body.cName,
     cDesc: req.body.cDesc,
+    cField: req.body.cField,
     cDate: req.body.cDate,
     cOutcomes : req.body.cOutcomes
     })

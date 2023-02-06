@@ -17,8 +17,7 @@ var schema = new mongo.Schema({
         default : ''
     },
     cField : {
-        type : String,
-        default : ''
+        type : [String]
     },
     cDate : {
         type : Date,

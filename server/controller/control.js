@@ -122,11 +122,16 @@ exports.createCourse = (req,res)=>{
         return;
       }
           
+    let strCField = req.body.cField;
+    console.log(typeof(strCField));
+    console.log(strCField);
+    //let arrCField = strCField.split(",");
+
     var course = new CourseDB({
     walletAddress: req.body.walletAddress,
     cName: req.body.cName,
     cDesc: req.body.cDesc,
-    cField: req.body.cField,
+    cField: arrCField,
     cDate: req.body.cDate,
     cOutcomes : req.body.cOutcomes
     })

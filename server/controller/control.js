@@ -1,8 +1,8 @@
-const TeacherDB = require('../model/model_teacher')
-const StudentDB = require('../model/model_student')
+const TeacherDB = require('../model/model_teacher');
+const StudentDB = require('../model/model_student');
 const CourseDB = require('../model/model_course');
 const courseDB = require('../model/model_course');
-const {Counter} = require('../model/model_seq')
+const {Counter} = require('../model/model_seq');
 
 /*
 TO create new Teacher
@@ -169,8 +169,37 @@ exports.getCourses = (req,res)=>{
     }
 }
 
+// TO fetch only filtered Courses
+exports.findCourses = (req,res) =>{
+    if(req.body.filter){
+        let arr = [];
+        const filter = req.body.filter;
+        courseDB.find().then((data) =>{
+            if(!data){
+                return res.status(404).send("None");
+            }else{
+                for(let i=0;i<data.length;i++){
+                    for(let j=0;j<data[i].cField.length;j++){
+                        for(let k=0;k<filter.length;k++){
+                            if(filter[k] == data[i].cField[j]){
+                                arr.push(data[i]);
+                                continue;
+                            }
+                        }
+                    }
+                }
+                res.send(arr);
+            }
+        }).catch(err=>{
+            return res.status(500).send({message:err.message || "some error occurred "});
+        })
+    }
+    else{
+        res.status(400).send({message:err.message || "Bad request!!"})
+    }
+}
+
 //TO fetch current count
-//Fetch all Courses
 exports.getCount = (req,res)=>{
     Counter.find().then(data=>{
         if(!data){

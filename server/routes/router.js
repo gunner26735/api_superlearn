@@ -20,6 +20,8 @@ route.get("/api/get_student",controller.findStudent);
 route.post("/api/create_course",controller.createCourse);
 //fetch all courses 
 route.get("/api/course",controller.getCourses)
+//to fetch filtered courses
+route.post("/api/find_course",controller.findCourses)
 //to get courseId count
 route.get("/api/count",controller.getCount)
 
